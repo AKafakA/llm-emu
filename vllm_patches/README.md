@@ -1,6 +1,6 @@
-# vLLM patches for GhostServe
+# vLLM patches for LLM-Emu
 
-GhostServe needs three small wirings inside vLLM (~170 lines total)
+LLM-Emu needs three small wirings inside vLLM (~170 lines total)
 so that the plugin's executor hook receives `execute_model()` calls
 and the profile-capture tracer (StepCycleTracer) records per-step
 latency during real-GPU runs.
@@ -22,7 +22,7 @@ are set; with them unset, vLLM behaves identically to upstream.
 
 ```bash
 VLLM_DIR=$(python -c "import vllm, os; print(os.path.dirname(vllm.__file__))")
-cd "$VLLM_DIR/.." && patch -p1 < ghostserve-vllm-0.18.1.patch
+cd "$VLLM_DIR/.." && patch -p1 < llm-emu-vllm-0.18.1.patch
 ```
 
 The patch is a unified diff against vllm at commit
@@ -53,7 +53,7 @@ After applying either way:
 python -c "
 import vllm.v1.engine.core as c
 assert 'VLLM_EMULATOR_TRACE_STEP_CYCLE' in open(c.__file__).read()
-print('GhostServe vLLM patches: applied')
+print('LLM-Emu vLLM patches: applied')
 "
 ```
 

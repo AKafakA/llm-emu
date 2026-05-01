@@ -3,7 +3,7 @@ requires = ["setuptools>=64", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "ghostserve"
+name = "llm-emu"
 version = "0.1.0"
 description = "Profile-driven online emulator plugin for vLLM"
 readme = "README.md"
@@ -17,7 +17,7 @@ classifiers = [
 ]
 
 dependencies = [
-    # Pin vLLM to the version GhostServe is verified against.  The
+    # Pin vLLM to the version LLM-Emu is verified against.  The
     # in-tree vLLM patches in vllm_patches/ are produced against
     # vllm==0.18.1 (upstream commit a26e8dc7f0).
     "vllm==0.18.1",
@@ -27,7 +27,7 @@ dependencies = [
 emulator = "vllm_emulator.platform:emulator_platform_plugin"
 
 [project.urls]
-Homepage = "https://github.com/anonymous/ghostserve"
+Homepage = "https://github.com/anonymous/llm-emu"
 
 [tool.setuptools]
 packages = ["vllm_emulator"]

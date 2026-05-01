@@ -1,5 +1,5 @@
 # SPDX-License-Identifier: Apache-2.0
-"""GhostServe — profile-driven online emulator for vLLM."""
+"""LLM-Emu — profile-driven online emulator for vLLM."""
 
 __version__ = "0.1.0"
 

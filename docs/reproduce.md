@@ -14,7 +14,7 @@ Each cell runs the same 3-stage orchestrator with cell-specific config:
 ## Prerequisites
 
 ```bash
-# 1. Install vLLM 0.18.1 + the GhostServe patches (see README.md)
+# 1. Install vLLM 0.18.1 + the LLM-Emu patches (see README.md)
 # 2. ShareGPT prompts (one-time, ~5 min)
 python tools/download_filter_sharegpt.py
 # 3. CUDA stubs for emu mode (one-time)
@@ -74,7 +74,7 @@ bash tools/_orch_3stage_detkv.sh
 
 ```
 results/<CELL_TAG>/real_r{2,4,8,16,32}.json   # vLLM bench output (real GPU)
-                  emu_r{2,4,8,16,32}.json    # GhostServe bench output (emulator)
+                  emu_r{2,4,8,16,32}.json    # LLM-Emu bench output (emulator)
                   per_rate_deltas.csv         # %-error per metric per rate
 results/<HW_PREFIX>-adaptive-<CELL_TAG>/
                   serving-full.json           # the profile pack

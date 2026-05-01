@@ -1,5 +1,5 @@
 # SPDX-License-Identifier: Apache-2.0
-"""GhostServe platform plugin for vLLM."""
+"""LLM-Emu platform plugin for vLLM."""
 
 from typing import TYPE_CHECKING
 

@@ -1,15 +1,15 @@
-# GhostServe
+# LLM-Emu
 
 Profile-driven online emulator for [vLLM](https://github.com/vllm-project/vllm).
-GhostServe replaces vLLM's GPU forward pass with a latency draw from a
+LLM-Emu replaces vLLM's GPU forward pass with a latency draw from a
 profile pack captured once on a real GPU. The scheduler, HTTP stack,
 admission path, tokenizer, and output pipeline are vLLM's own
 unmodified code; only the per-step latency is faked.
 
-This repository accompanies the paper *GhostServe: Profile-Driven
+This repository accompanies the paper *LLM-Emu: Profile-Driven
 Online Emulation of LLM Serving Systems* (anonymous submission).
 
-The repository contains **only the GhostServe-specific code**: the
+The repository contains **only the LLM-Emu-specific code**: the
 plugin (`vllm_emulator/`), the reproduce-the-paper scripts (`tools/`),
 and a small **vLLM patch** under `vllm_patches/` that wires the plugin
 into `vllm.v1.engine.core`, `vllm.v1.executor.uniproc_executor`, and
@@ -21,7 +21,7 @@ v0.18.1.
 ## What's in this repo
 
 ```
-vllm_emulator/                    GhostServe plugin (~1.7K LoC online +
+vllm_emulator/                    LLM-Emu plugin (~1.7K LoC online +
                                   ~0.6K LoC offline tooling, no upstream
                                   vLLM code)
   oracle/                         density-aware step-latency oracle
@@ -41,7 +41,7 @@ tools/                            14 reproduce-the-paper scripts (see
                                   docs/reproduce.md)
 
 vllm_patches/                     vLLM v0.18.1 in-tree wiring (~170 lines)
-  ghostserve-vllm-0.18.1.patch    unified diff vs upstream
+  llm-emu-vllm-0.18.1.patch    unified diff vs upstream
   overrides/                      pre-patched copies of the 3 changed
                                   files, mirroring vLLM's path layout
   BASE_COMMIT                     upstream commit hash + version pin
@@ -60,15 +60,15 @@ If you have a vLLM source checkout (or you `pip install vllm==0.18.1
 
 ```bash
 pip install vllm==0.18.1
-git clone <this-repo> ghostserve && cd ghostserve
+git clone <this-repo> llm-emu && cd llm-emu
 
 # Patch the installed vLLM (or your local clone of vllm-project/vllm
 # at commit a26e8dc7f0):
 VLLM_DIR=$(python -c "import vllm, os; print(os.path.dirname(vllm.__file__))")
-cd "$VLLM_DIR/.." && patch -p1 < /path/to/ghostserve/vllm_patches/ghostserve-vllm-0.18.1.patch
+cd "$VLLM_DIR/.." && patch -p1 < /path/to/llm-emu/vllm_patches/llm-emu-vllm-0.18.1.patch
 
 # Install the plugin
-cd /path/to/ghostserve && pip install -e .
+cd /path/to/llm-emu && pip install -e .
 ```
 
 ### Path B — drop in the override files
@@ -77,7 +77,7 @@ If you can't or don't want to apply the patch (e.g., a compiled wheel):
 
 ```bash
 pip install vllm==0.18.1
-git clone <this-repo> ghostserve && cd ghostserve
+git clone <this-repo> llm-emu && cd llm-emu
 
 VLLM_DIR=$(python -c "import vllm, os; print(os.path.dirname(vllm.__file__))")
 
@@ -107,7 +107,7 @@ use without it:
 vllm serve Qwen/Qwen3-8B \
   --port 8000 --max-model-len 4096 --gpu-memory-utilization 0.85
 
-# GhostServe emulator (no GPU forward pass; uses profile pack):
+# LLM-Emu emulator (no GPU forward pass; uses profile pack):
 VLLM_EMULATOR_ENABLE_ORACLE=1 \
 VLLM_EMULATOR_PROFILE_PACK=path/to/serving-full.json \
 VLLM_EMULATOR_MODE=realtime \
