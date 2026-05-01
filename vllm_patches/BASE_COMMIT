@@ -1,0 +1,4 @@
+upstream-base: a26e8dc7f0
+upstream-repo: https://github.com/vllm-project/vllm
+upstream-tag: ~v0.18.1
+captured-at: 2026-04-30

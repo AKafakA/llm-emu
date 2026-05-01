@@ -1,0 +1,37 @@
+[build-system]
+requires = ["setuptools>=64", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "ghostserve"
+version = "0.1.0"
+description = "Profile-driven online emulator plugin for vLLM"
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "Apache-2.0" }
+authors = [{ name = "Anonymous" }]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: Apache Software License",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+]
+
+dependencies = [
+    # Pin vLLM to the version GhostServe is verified against.  The
+    # in-tree vLLM patches in vllm_patches/ are produced against
+    # vllm==0.18.1 (upstream commit a26e8dc7f0).
+    "vllm==0.18.1",
+]
+
+[project.entry-points."vllm.platform_plugins"]
+emulator = "vllm_emulator.platform:emulator_platform_plugin"
+
+[project.urls]
+Homepage = "https://github.com/anonymous/ghostserve"
+
+[tool.setuptools]
+packages = ["vllm_emulator"]
+include-package-data = true
+
+[tool.setuptools.package-data]
+vllm_emulator = ["**/*.py"]
