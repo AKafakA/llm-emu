@@ -110,7 +110,7 @@ vllm serve Qwen/Qwen3-8B \
 # LLM-Emu emulator (no GPU forward pass; uses profile pack):
 VLLM_EMULATOR_ENABLE_ORACLE=1 \
 VLLM_EMULATOR_PROFILE_PACK=path/to/serving-full.json \
-VLLM_EMULATOR_MODE=realtime \
+# Disable GPU for safeguarding
 CUDA_VISIBLE_DEVICES="" \
 vllm serve Qwen/Qwen3-8B \
   --port 8001 --max-model-len 4096 --gpu-memory-utilization 0.85
@@ -121,7 +121,50 @@ see `docs/reproduce.md`.
 
 ---
 
-## Reproduce paper Table 1
+## Reproduce Results
+
+We got this results when running the emulator on Qwen models and RTX8000/A40 GPU hosts
+
+Here is the converted Markdown table with the experiment IDs removed and the descriptive settings preserved as section headers within the table:
+
+| Metric | $r=2$ | $r=4$ | $r=8$ | $r=16$ | $r=32$ |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| **Main: Qwen3-8B at RTX 8000** | | | | | |
+| TTFT | -9.81% | -6.92% | -1.89% | +3.17% | +2.52% |
+| TPOT | +0.48% | +0.85% | +0.18% | +0.08% | +0.80% |
+| ITL | +0.43% | +0.80% | -0.00% | -0.03% | +0.71% |
+| E2E | +0.34% | +0.72% | -0.42% | +2.01% | +2.02% |
+| TPS | -0.00% | -0.02% | +0.67% | +0.12% | -0.78% |
+| **Model-scale up: Qwen3-14B at RTX 8000** | | | | | |
+| TTFT | -9.10% | -4.42% | +1.39% | +1.24% | +1.80% |
+| TPOT | +0.47% | +1.37% | -1.02% | +0.27% | +0.58% |
+| ITL | +0.42% | +1.28% | -1.33% | +0.39% | +0.36% |
+| E2E | +1.06% | +1.50% | +0.48% | +1.09% | +1.51% |
+| TPS | +0.54% | -0.26% | +1.10% | -0.27% | -0.02% |
+| **Main (Hardware swap): Qwen3-8B at A40** | | | | | |
+| TTFT | -7.37% | -9.22% | -1.06% | +5.05% | +3.44% |
+| TPOT | +0.94% | +1.05% | -0.46% | +1.24% | +1.52% |
+| ITL | +0.82% | +1.03% | -0.62% | +1.26% | +1.25% |
+| E2E | +0.74% | +0.92% | -0.73% | +3.72% | +2.83% |
+| TPS | -0.02% | +0.02% | +1.25% | -1.10% | -1.03% |
+| **Bursty workload: $\gamma=0.25$** | | | | | |
+| TTFT | -6.90% | +4.97% | **-10.41%** | -3.13% | -2.45% |
+| TPOT | +0.08% | **+4.75%** | -2.39% | -0.90% | -1.60% |
+| ITL | -0.14% | **+4.69%** | -2.34% | -0.93% | -1.26% |
+| E2E | -0.20% | +4.77% | -4.09% | -2.32% | -2.12% |
+| TPS | -0.47% | -0.71% | **-1.88%** | +0.04% | +1.01% |
+| **Model-family swap: Llama-3.1-8B at A40** | | | | | |
+| TTFT | -6.52% | -9.32% | -2.30% | +4.38% | +2.12% |
+| TPOT | +0.65% | +0.46% | +0.30% | +1.98% | +0.73% |
+| ITL | +0.57% | +0.38% | +0.36% | +1.92% | +0.61% |
+| E2E | +0.50% | +0.28% | -0.09% | +3.48% | +1.69% |
+| TPS | -0.01% | -0.04% | -0.75% | -1.76% | -0.45% |
+| **Model-scale down: Qwen3-4B at A40** | | | | | |
+| TTFT | -6.88% | -5.16% | -3.10% | +7.78% | +4.80% |
+| TPOT | +0.34% | +1.28% | +3.10% | +1.70% | +1.13% |
+| ITL | +0.24% | +1.21% | +3.01% | +1.68% | +0.79% |
+| E2E | +0.16% | +1.14% | +3.02% | **+5.22%** | +3.60% |
+| TPS | -0.00% | +0.01% | -0.23% | -1.50% | -0.66% |
 
 See **[docs/reproduce.md](docs/reproduce.md)** for the per-cell
 commands (six cells: M-Q8, M-Q14, A40-Q8, M-Q8-Burst, A40-L8, A40-Q4).
