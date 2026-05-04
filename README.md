@@ -199,8 +199,8 @@ cat results/mq8-reproduce/per_rate_deltas.csv
 | --- | --- |
 | `VLLM_EMULATOR_ENABLE_ORACLE` | `1` activates the plugin; unset = pass-through |
 | `VLLM_EMULATOR_PROFILE_PACK`  | path to `serving-full.json` |
-| `VLLM_EMULATOR_MODE`          | `realtime` (sleep for predicted latency) or `accelerated` (no sleep) |
-| `VLLM_EMULATOR_MOCK_CUDA`     | `1` activates `torch.cuda` stubs (CPU-only hosts) |
+| `VLLM_EMULATOR_MODE`          | `realtime` (sleep for predicted latency) or `accelerated` (no sleep, still not full tested) |
+| `VLLM_EMULATOR_MOCK_CUDA`     | `1` activates `torch.cuda` stubs if only CPU allowed, enabled by default|
 
 ---
 
