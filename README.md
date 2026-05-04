@@ -71,6 +71,10 @@ cd "$VLLM_DIR/.." && patch -p1 < /path/to/llm-emu/vllm_patches/llm-emu-vllm-0.18
 cd /path/to/llm-emu && pip install -e .
 ```
 
+If plan to extend to other versions of vllm, just rebase this over the vllm target versions and address the potential conflication. 
+Since the vllm changes is only appending new flags,  exposing internal status and wiring to the emulator mocker if enabled without modifying any vllm logics/functionality, 
+the risk of major conflication is consider to be small.
+
 ### Path B — drop in the override files
 
 If you can't or don't want to apply the patch (e.g., a compiled wheel):
