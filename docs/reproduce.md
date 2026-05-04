@@ -24,6 +24,11 @@ ln -sf /usr/local/cuda/lib64/libcudart.so.12 .
 cd -
 ```
 
+To skip Phase A on a first try, point `VLLM_EMULATOR_PROFILE_PACK` at
+the bundled `example_profiling_data/A40-Q8-Qwen3-8B.json` (Qwen3-8B
+on A40 from the paper). For other models / hardware / flags you'll
+still need a fresh capture below.
+
 ## Single-cell drive
 
 ```bash
