@@ -130,9 +130,8 @@ A40-Q8 row of the table below).
 
 ## Reproduce Results
 
-We got this results when running the emulator on Qwen models and RTX8000/A40 GPU hosts
+We got this results when running the emulator on Qwen models and RTX8000/A40 GPU hosts as shown in the paper
 
-Here is the converted Markdown table with the experiment IDs removed and the descriptive settings preserved as section headers within the table:
 
 | Metric | $r=2$ | $r=4$ | $r=8$ | $r=16$ | $r=32$ |
 | :--- | :--- | :--- | :--- | :--- | :--- |
