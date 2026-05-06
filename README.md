@@ -1,12 +1,12 @@
-# LLM-Emu
+# GhostServe / LLM-Emu
 
 Profile-driven online emulator for [vLLM](https://github.com/vllm-project/vllm).
-LLM-Emu replaces vLLM's GPU forward pass with a latency draw from a
+GhostServe replaces vLLM's GPU forward pass with a latency draw from a
 profile pack captured once on a real GPU. The scheduler, HTTP stack,
 admission path, tokenizer, and output pipeline are vLLM's own
 unmodified code; only the per-step latency is faked.
 
-This repository accompanies the paper *LLM-Emu: Profile-Driven
+This repository accompanies the paper *GhostServe: Profile-Driven
 Online Emulation of LLM Serving Systems* (anonymous submission).
 
 The repository contains **only the LLM-Emu-specific code**: the
