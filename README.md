@@ -204,22 +204,4 @@ cat results/mq8-reproduce/per_rate_deltas.csv
 | `VLLM_EMULATOR_MODE`          | `realtime` (sleep for predicted latency) or `accelerated` (no sleep, still not full tested) |
 | `VLLM_EMULATOR_MOCK_CUDA`     | `1` activates `torch.cuda` stubs if only CPU allowed, enabled by default|
 
----
-
-## License and Cititation
-
-Apache-2.0 (inherits from upstream vLLM).
-
-If you find this tools is useful, please consider to cite as:
-
-```
-@misc{da2026llmemunativeruntimeemulation,
-      title={LLM-Emu: Native Runtime Emulation of LLM Inference via Profile-Driven Sampling}, 
-      author={Wei Da and Evangelia Kalyvianaki},
-      year={2026},
-      eprint={2605.00616},
-      archivePrefix={arXiv},
-      primaryClass={cs.DC},
-      url={https://arxiv.org/abs/2605.00616}, 
-}
 ```
