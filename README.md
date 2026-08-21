@@ -7,7 +7,8 @@ admission path, tokenizer, and output pipeline are vLLM's own
 unmodified code; only the per-step latency is faked.
 
 This repository accompanies the paper *LLM-Emu: Profile-Driven
-Online Emulation of LLM Serving Systems* (anonymous submission).
+Online Emulation of LLM Serving Systems*, accepted as a poster presentation at the MLArchSys@ISCA. 
+Paper link: [OpenReview](https://openreview.net/forum?id=9jrjM8ZQyn)
 
 The repository contains **only the LLM-Emu-specific code**: the
 plugin (`vllm_emulator/`), the reproduce-the-paper scripts (`tools/`),
@@ -213,13 +214,12 @@ Apache-2.0 (inherits from upstream vLLM).
 If you find this tools is useful, please consider to cite as:
 
 ```
-@misc{da2026llmemunativeruntimeemulation,
-      title={LLM-Emu: Native Runtime Emulation of LLM Inference via Profile-Driven Sampling}, 
-      author={Wei Da and Evangelia Kalyvianaki},
-      year={2026},
-      eprint={2605.00616},
-      archivePrefix={arXiv},
-      primaryClass={cs.DC},
-      url={https://arxiv.org/abs/2605.00616}, 
+@inproceedings{
+da2026llmemuprofiledriven,
+title={{LLM}-Emu:Profile-Driven Native Online Emulation of {LLM} Serving Systems},
+author={Wei Da and Evangelia Kalyvianaki},
+booktitle={Machine Learning for Computer Architecture and Systems 2026},
+year={2026},
+url={https://openreview.net/forum?id=9jrjM8ZQyn}
 }
 ```
